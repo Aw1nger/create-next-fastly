@@ -37,6 +37,15 @@ program.argument("<project-name>", "project name").action((projectName) => {
     { stdio: "inherit" }
   );
 
+  console.log(chalk.cyan("📂 Make FSD folders..."));
+  const projectDir = process.cwd();
+  const srcDir = path.join(projectDir, "src");
+  const fsdDirs = ["shared", "entities", "features", "widgets"];
+  fsdDirs.forEach((dir) => {
+    fs.mkdirSync(path.join(srcDir, dir), { recursive: true });
+    console.log(chalk.green(`✔`), ` Make ${dir}...`);
+  });
+
   console.log(chalk.yellow("📂 Copying template files..."));
 
   if (fs.existsSync(templatesDir)) {
@@ -45,13 +54,13 @@ program.argument("<project-name>", "project name").action((projectName) => {
       const srcFile = path.join(templatesDir, file);
       const destFile = path.join(projectDir, file);
 
-      // if (fs.existsSync(destFile)) {
-      //   fs.rmSync(destFile);
-      //   console.log(chalk.yellow(`⚠ Overwriting ${file}...`));
-      // }
-
-      fs.copyFileSync(srcFile, destFile);
-      console.log(chalk.green(`✔ Copied ${file} to project.`));
+      if (fs.statSync(srcFile).isDirectory()) {
+        fs.cpSync(srcFile, destFile, { recursive: true });
+        console.log(chalk.green(`📁 Copied folder ${file} to project.`));
+      } else {
+        fs.copyFileSync(srcFile, destFile);
+        console.log(chalk.green(`✔ Copied file ${file} to project.`));
+      }
     });
   } else {
     console.log(chalk.red("⚠ No templates folder found. Skipping..."));

@@ -20,6 +20,9 @@ importers:
       create-next-fastly:
         specifier: link:../../Library/pnpm/global/5/node_modules/create-next-fastly
         version: link:../../Library/pnpm/global/5/node_modules/create-next-fastly
+      prettier:
+        specifier: ^3.5.1
+        version: 3.5.1
 
 packages:
 
@@ -31,8 +34,15 @@ packages:
     resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
     engines: {node: '>=18'}
 
+  prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
+    engines: {node: '>=14'}
+    hasBin: true
+
 snapshots:
 
   chalk@5.4.1: {}
 
   commander@13.1.0: {}
+
+  prettier@3.5.1: {}

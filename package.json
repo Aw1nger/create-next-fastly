@@ -1,19 +1,20 @@
 {
-  "name": "create-next-fastly",
-  "version": "1.0.0",
+  "name": "@aw1nger/create-next-fastly",
+  "version": "0.0.1",
+  "licenses": "MIT",
+  "author": "aw1nger",
+  "description": "",
+  "keywords": [],
   "main": "index.js",
   "type": "module",
   "bin": {
     "create-next-fastly": "./index.js"
   },
-  "keywords": [],
-  "author": "aw1nger",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
-    "create-next-fastly": "link:../../Library/pnpm/global/5/node_modules/create-next-fastly"
+    "create-next-fastly": "link:../../Library/pnpm/global/5/node_modules/create-next-fastly",
+    "prettier": "^3.5.1"
   },
   "pnpm": {
     "overrides": {
