@@ -1,9 +1,11 @@
 {
   "name": "@aw1nger/create-next-fastly",
-  "version": "0.0.2",
-  "licenses": [{
-    "type": "MIT"
-  }],
+  "version": "0.1.0",
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
   "author": "aw1nger",
   "description": "",
   "keywords": [],
