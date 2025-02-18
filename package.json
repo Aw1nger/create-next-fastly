@@ -1,14 +1,22 @@
 {
   "name": "@aw1nger/create-next-fastly",
   "version": "0.1.0",
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license": "MIT",
   "author": "aw1nger",
-  "description": "",
-  "keywords": [],
+  "description": "CLI for quickly developing Next.js applications",
+  "keywords": [
+    "cli",
+    "scaffolding",
+    "nextjs-template"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aw1nger/create-next-fastly.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aw1nger/create-next-fastly/issues"
+  },
+  "homepage": "https://github.com/Aw1nger/create-next-fastly#create-next-fastly",
   "main": "index.js",
   "type": "module",
   "bin": {
@@ -17,12 +25,6 @@
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
-    "create-next-fastly": "link:../../Library/pnpm/global/5/node_modules/create-next-fastly",
     "prettier": "^3.5.1"
-  },
-  "pnpm": {
-    "overrides": {
-      "create-next-fastly": "link:../../Library/pnpm/global/5/node_modules/create-next-fastly"
-    }
   }
 }
