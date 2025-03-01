@@ -1,34 +1,23 @@
 FROM node:23.7.0 AS base
 
 FROM base AS deps
-RUN apt install libc6
+RUN apt install libc6 curl bash
 
 WORKDIR /app
 
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then npm ci; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+COPY package.json bun.lock ./
 
+RUN curl -fsSL https://bun.sh/install | bash && \
+    ~/.bun/bin/bun i --frozen-lockfile
 
 FROM base AS builder
 WORKDIR /app
 
+COPY --from=deps /root/.bun /root/.bun
 COPY --from=deps /app/node_modules ./node_modules
-
-RUN mkdir -p /app/public
-
 COPY . .
 
-RUN \
-  if [ -f yarn.lock ]; then yarn run build; \
-  elif [ -f package-lock.json ]; then npm run build; \
-  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-  else echo "Lockfile not found." && exit 1; \
-  fi
+RUN ~/.bun/bin/bun run build
 
 FROM base AS runner
 WORKDIR /app

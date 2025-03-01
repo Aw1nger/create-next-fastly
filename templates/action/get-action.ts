@@ -1,39 +1,29 @@
 "use server";
 
-import axios from "axios";
-import { cookies } from "next/headers";
+import api from "@/shared/action/axios-instance";
+import { AxiosError } from "axios";
 
-/**
- * Сервернный action для get запросa
- */
 export async function getAction<queryType>(url: string, query?: queryType) {
   try {
-    const CookieStore = await cookies();
-
-    const storedCookies = CookieStore.getAll();
-    const cookieHeader = storedCookies
-      .map(({ name, value }) => `${name}=${value}`)
-      .join("; ");
-
-    const headers: Record<string, string> = {
-      Cookie: cookieHeader,
-    };
-
-    const response = await axios.get(`${process.env.API_URL}${url}`, {
+    const response = await api.get(url, {
       params: query,
-      headers,
     });
+    console.log(response.data);
 
     return { data: response.data, error: null };
-  } catch (error: any) {
-    console.error(
-      "Ошибка сервера:",
-      error.response?.data?.message || error.message,
-    );
+  } catch (error: unknown) {
+    if (error instanceof AxiosError) {
+      console.error("Ошибка сервера:", error);
+      return {
+        data: null,
+        error: error.response?.data?.message || "Произошла ошибка на сервере",
+      };
+    }
 
+    console.error("Неизвестная ошибка:", error);
     return {
       data: null,
-      error: error.response?.data?.message || "Произошла ошибка на сервере",
+      error: "Произошла неизвестная ошибка",
     };
   }
 }

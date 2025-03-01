@@ -20,14 +20,14 @@ program
 program.argument("<project-name>", "project name").action((projectName) => {
   console.log(chalk.green(`🚀 Creating project: ${projectName}...`));
   execSync(
-    `pnpm dlx create-next-app@latest ${projectName} --use-pnpm --tailwind --ts --eslint --app --src-dir --turbopack --import-alias @/*`,
+    `bunx create-next-app@canary ${projectName} --tailwind --ts --eslint --app --src-dir --turbopack --import-alias @/*`,
     { stdio: "inherit" },
   );
 
   process.chdir(projectName);
 
   console.log(chalk.blue("🖌 Installing ShadCN UI..."));
-  execSync("pnpm dlx shadcn@latest init -d", { stdio: "inherit" });
+  execSync("bunx shadcn@canary init -d", { stdio: "inherit" });
 
   InstallDeps();
   MakeFSD();
