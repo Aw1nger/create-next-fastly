@@ -17,10 +17,10 @@
     "url": "https://github.com/Aw1nger/create-next-fastly/issues"
   },
   "homepage": "https://github.com/Aw1nger/create-next-fastly#create-next-fastly",
-  "main": "bundle.js.js",
+  "main": "bundle.js",
   "type": "module",
   "bin": {
-    "create-next-fastly": "./bundle.js.js"
+    "create-next-fastly": "./bundle.js"
   },
   "dependencies": {
     "chalk": "^5.4.1",
