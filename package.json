@@ -1,6 +1,6 @@
 {
   "name": "@aw1nger/create-next-fastly",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "license": "MIT",
   "author": "aw1nger",
   "description": "CLI for quickly developing Next.js applications",
