@@ -28,14 +28,14 @@ export async function apiHandler<ReturnType>(
 
     return schema.parse(result.data);
   } catch (error: unknown) {
+
     if (error instanceof ZodError) {
       console.error("Zod parse error:", error.message, error.format());
       throw new Error("Невалидный ответ сервера, попробуйте позже!");
-    } else if (typeof error === "string") {
-      throw new Error(error);
     } else {
-      console.error("Unknown error:", error);
-      throw new Error("Произошла неизвестная ошибка, попробуйте позже!");
+      // @ts-ignore
+      throw new Error(error.message);
     }
+
   }
 }

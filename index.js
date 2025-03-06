@@ -27,7 +27,7 @@ program.argument("<project-name>", "project name").action((projectName) => {
   process.chdir(projectName);
 
   console.log(chalk.blue("🖌 Installing ShadCN UI..."));
-  execSync("bunx shadcn@canary init -d", { stdio: "inherit" });
+  execSync("bunx shadcn@latest init -d", { stdio: "inherit" });
 
   InstallDeps();
   MakeFSD();
